@@ -1,4 +1,6 @@
-export class dish{
+import { comment } from "./comments"
+
+export class Dish{
     id: string
     name: string
     image: string
@@ -7,4 +9,5 @@ export class dish{
     label: string
     price: string
     description: string
+    comments: comment[]
 }
