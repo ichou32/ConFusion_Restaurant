@@ -21,6 +21,9 @@ export const routes :Routes =[
     },
     {
         path: 'dishdetail/:id', component: DishdetailComponent
+    },
+    {
+        path: 'aboutus', component: AboutComponent
     }
 ];
 
