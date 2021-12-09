@@ -34,5 +34,51 @@
         <h4>Map of our Location</h4>
       </div>
     </div>
+    
+  </div>
+    <hr>
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Send us your Feedback</h3> 
+    
+    <form novalidate [formGroup]="feedBackForm" (ngSubmit)="onSubmit()">
+      <P>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="firstname" placeholder="first name" type="text" >
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="lastname" placeholder="last name" type="text" >
+        </mat-form-field>
+      </P>
+      <P>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="email" placeholder="Email" type="email" >
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" >
+        </mat-form-field>
+      </P>
+      <table class="full-width">
+        <td>
+          <mat-slide-toggle formControlName="agree">May we contact You? </mat-slide-toggle>
+        </td>
+        <td>
+          <mat-select  formControlName="contactType" aria-placeholder="Contact me by">
+            <mat-option *ngFor="let ctt of contactType" [value]="ctt">
+              {{ctt}}
+            </mat-option>
+          </mat-select>
+        </td>
+      </table>
+      <p>
+        <mat-form-field class="full-width">
+          <textarea formControlName="message" matInput row="12" placeholder="your feedBack">
+          </textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <button mat-button type="reset"> Reset</button>
+        <button mat-button type="submit" class="background-primary text-floral-white"> Submit</button>
+      </p>
+    </form>
   </div>
 </div>
