@@ -43,22 +43,22 @@
     <form novalidate [formGroup]="feedBackForm" (ngSubmit)="onSubmit()">
       <P>
         <mat-form-field class="half-width">
-          <input matInput formControlName="firstname" placeholder="first name" type="text" >
-          <mat-error *ngIf="feedBackForm.get('firstname').hasError('required') && feedBackForm.get('firstname').touched">this shit is required</mat-error>
+          <input matInput formControlName="firstname" placeholder="first name" type="text" required>
+          <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="lastname" placeholder="last name" type="text" >
-          <mat-error *ngIf="feedBackForm.get('lastname').hasError('required') && feedBackForm.get('lastname').touched">this shit is required</mat-error>
+          <input matInput formControlName="lastname" placeholder="last name" type="text" required>
+          <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
         </mat-form-field>
       </P>
       <P>
         <mat-form-field class="half-width">
-          <input matInput formControlName="email" placeholder="Email" type="email" >
-          <mat-error *ngIf="feedBackForm.get('email').hasError('required') && feedBackForm.get('email').touched">Email is required</mat-error>
+          <input matInput formControlName="email" placeholder="Email" type="email" required>
+          <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" >
-          <mat-error *ngIf="feedBackForm.get('telnum').hasError('required') && feedBackForm.get('telnum').touched">How we can call your whithout having your Phone?</mat-error>
+          <mat-error *ngIf="formErrors.telnum">{{formErrors.telnum}}</mat-error>
         </mat-form-field>
       </P>
       <table class="full-width">
