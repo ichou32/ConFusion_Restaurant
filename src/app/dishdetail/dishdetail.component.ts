@@ -17,6 +17,7 @@ export class DishdetailComponent implements OnInit {
   ratingForm: FormGroup
   comment: comment
   dish: Dish;
+  errMss: string
   dishIds: string[]
   prev : string
   next : string
@@ -45,7 +46,8 @@ export class DishdetailComponent implements OnInit {
               @Inject('BaseURL') private BaseURL){}
 
   ngOnInit() {
-    this.dishService.getDishIds().subscribe( dishIds => this.dishIds = dishIds)
+    this.dishService.getDishIds().subscribe( dishIds => this.dishIds = dishIds,
+      errmss => this.errMss = errmss)
     this.rout.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
     .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
 
