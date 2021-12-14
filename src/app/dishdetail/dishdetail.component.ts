@@ -17,6 +17,7 @@ export class DishdetailComponent implements OnInit {
   ratingForm: FormGroup
   comment: comment
   dish: Dish;
+  dishCopy: Dish
   errMss: string
   dishIds: string[]
   prev : string
@@ -49,7 +50,8 @@ export class DishdetailComponent implements OnInit {
     this.dishService.getDishIds().subscribe( dishIds => this.dishIds = dishIds,
       errmss => this.errMss = errmss)
     this.rout.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-    .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+    .subscribe(dish => { this.dish = dish; this.dishCopy = dish; this.setPrevNext(dish.id); },
+      errmss => this.errMss = <any>errmss);
 
     this.createForm();
   }
@@ -101,7 +103,12 @@ export class DishdetailComponent implements OnInit {
 
     this.comment = this.ratingForm.value;
     this.comment.date=d.toString(); // set the date to the comment
-    this.dish.comments.push(this.comment);
+    this.dishCopy.comments.push(this.comment);
+    this.dishService.putDish(this.dishCopy)
+      .subscribe(dish =>{
+        this.dish = dish; this.dishCopy= dish
+      },
+      errmss =>{ this.dishCopy =null; this.dish = null; this.errMss = <any>errmss})
     console.log(this.comment)
    this.ratingForm.reset({
      'author':'',
