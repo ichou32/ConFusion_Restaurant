@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedBack, contacttype } from '../shared/feedBack';
 import { flyInOut } from '../animations/app.animation';
-
+import { FeedbackService } from '../services/feedback.service';
+import { error } from 'protractor';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -19,6 +20,7 @@ export class ContactComponent implements OnInit {
 
   feedBackForm: FormGroup
   feedBack: FeedBack
+  feedBackErr: string
   contacttype= contacttype
   @ViewChild('fform') feedbackFormDirective;
   formErrors={
@@ -49,11 +51,13 @@ export class ContactComponent implements OnInit {
 
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private feedBackService: FeedbackService) {
     this.createForm();
    }
 
   ngOnInit() {
+    this.createForm()
+
   }
 
   createForm(){
@@ -94,6 +98,10 @@ export class ContactComponent implements OnInit {
 
   onSubmit(){
     this.feedBack = this.feedBackForm.value;
+    this.feedBackService.submitFeedback(this.feedBack)
+      .subscribe(feedback => this.feedBack = feedback,
+        error =>{this.feedBack =null; this.feedBackErr = error})
+        
     console.log('the form information',this.feedBack)
     this.feedBackForm.reset({
       firstname:'',

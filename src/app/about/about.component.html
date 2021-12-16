@@ -59,7 +59,7 @@
 
     <mat-list>
       <mat-list-item *ngFor="let leader of LEADERS" fxLayout="column-reverse" style="height:150px;">
-        <img mat-list-image src={{leader.image}} alt={{leader.description}} style="border-radius: 50%;"/>
+        <img mat-list-image src="{{BaseURL + leader.image}}"alt={{leader.description}} style="border-radius: 50%;"/>
         <div fxLayout="column" fxLayoutGap="0px" style="padding: 15px;">
           <p> 
               <strong>{{leader.name | uppercase}} {{leader.abbr | uppercase }}</strong> <br>
@@ -72,9 +72,13 @@
 
    </div>
 
-   <div [hidden]="LEADERS">
+   <div [hidden]="LEADERS || errorMsg">
      <mat-spinner></mat-spinner>
      <h4>Loading... Please wait</h4>
+   </div>
+   <div *ngIf="errorMsg">
+     <h2>Error</h2>
+     {{errorMsg}}
    </div>
      
 </div>
