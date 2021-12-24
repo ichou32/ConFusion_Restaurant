@@ -78,7 +78,7 @@ import { HighlightDirective } from './directive/highlight.directive';
     PromotionService,
     LeaderService,
     ProcessHTTPMsgService,
-    { provide: 'baseURL', useValue:  baseURL}
+    { provide: 'BaseURL', useValue:  baseURL}
     ],
     entryComponents:[
       LoginComponent
