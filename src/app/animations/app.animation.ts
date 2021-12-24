@@ -43,3 +43,9 @@ export function expand() {
         ])
     ])
 }
+
+export function feedBackVisibility(){
+    trigger('visibility',[
+        transition('* => *',animate('5s ease-in-out'))
+    ])
+}
