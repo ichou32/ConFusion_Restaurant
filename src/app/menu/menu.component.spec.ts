@@ -36,7 +36,7 @@ describe('MenuComponent', () => {
       declarations: [ MenuComponent ],
       providers: [
         { provide: DishService, useValue: dishServiceStub },
-        { provide: 'baseURL', useValue: baseURL },
+        { provide: 'BaseURL', useValue: baseURL },
       ]
     })
     .compileComponents();
