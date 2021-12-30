@@ -15,5 +15,5 @@ export class AppPage {
 
   getAllElements(selector: string) {
     return element.all(by.css(selector));
-  }
+  
 }

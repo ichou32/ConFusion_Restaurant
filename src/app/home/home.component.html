@@ -1,11 +1,11 @@
-<div class="container"
-     fxLayout="row"
+<div class="container text"
+     fxLayout="row wrap"
      fxLayout.sm="column"
      fxLayout.xs="column"
      fxLayoutAlign.gt-md="space-around center"
-     fxLayoutGap="10px">
+     fxLayoutGap="30px">
 
-<mat-card *ngIf="dish" fxFlex>
+<mat-card *ngIf="dish" fxFlex >
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
@@ -52,28 +52,31 @@
 </div>
 
 
-<mat-card *ngIf="FeaturedLeader" fxFlex>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>
-      <h3>
-        {{FeaturedLeader.name}} {{FeaturedLeader.abbr | uppercase}}
-      </h3>
-    </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="{{BaseURL + FeaturedLeader.image}}" alt={{FeaturedLeader.image}}>
-  <mat-card-content>
-    <h4>{{FeaturedLeader.designation | uppercase}}</h4>
-    <p>{{FeaturedLeader.description}}</p>
-  </mat-card-content>
-</mat-card>
+</div>
 
-<div [hidden]="FeaturedLeader || leaderErr">
-  <mat-spinner> </mat-spinner>
-  <h4>Laoding ... Please Wait</h4>
-</div>
-<div *ngIf="leaderErr">
-  <h2>Error</h2>
-  <h4>{{leaderErr}}</h4>
-</div>
+<div class="container text">
+  <mat-card *ngIf="FeaturedLeader" >
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>
+        <h3>
+          {{FeaturedLeader.name}} {{FeaturedLeader.abbr | uppercase}}
+        </h3>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{BaseURL + FeaturedLeader.image}}" alt={{FeaturedLeader.image}}>
+    <mat-card-content>
+      <h4>{{FeaturedLeader.designation | uppercase}}</h4>
+      <p>{{FeaturedLeader.description}}</p>
+    </mat-card-content>
+  </mat-card>
+  
+  <div [hidden]="FeaturedLeader || leaderErr">
+    <mat-spinner> </mat-spinner>
+    <h4>Laoding ... Please Wait</h4>
+  </div>
+  <div *ngIf="leaderErr">
+    <h2>Error</h2>
+    <h4>{{leaderErr}}</h4>
+  </div>  
 </div>
